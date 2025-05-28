@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinkPrints - Search</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Reusing all the exact same styles from shop.html */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background-color:#ffe4ec;
+            padding: 40px;
+            padding-top: 160px;
+        }
+        
+        .header-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #fff;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .top-header {
+            background-color: black;
+            padding: 20px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            color: #ff69b4;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 60px;
+            height: 60px;
+            margin-right: 10px;
+        }
+        
+        .logo-name {
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .tagline {
+            font-size: 14px;
+            margin-left: 300px;
+        }
+        
+        .search-cart {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-form {
+            display: flex;
+            gap: 8px;
+        }
+
+        
+        .search-btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: #ff3385;
+        }
+
+        .nav-bar ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 20px 0;
+            background-color:white;
+        }
+
+        .nav-bar ul li {
+            margin: 0 15px;
+        }
+
+        .nav-bar ul li a {
+            text-decoration: none;
+            color: black;
+            font-size: 18px;
+            padding: 5px 10px;
+            transition: 0.3s;
+        }
+
+        .nav-bar ul li a:hover {
+            border-bottom: 2px solid #ff3385;
+            color: #f8bbd0;
+        }
+        
+        .nav-link.active {
+            color: #d23c67;
+            font-weight: 600;
+        }
+        .mobile-nav-btn {
+    display: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ff69b4;
+    padding: 10px;
+    position: fixed;
+}
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    position: fixed; /* Changed from absolute to fixed */
+   top: var(--header-height); /* Adjust this based on your header height */
+    left: 0;
+    right: 0;
+    z-index: 999; /* Lower than header */
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.mobile-nav a {
+    padding: 12px 0;
+    color: #555;
+    text-decoration: none;
+    border-bottom: 1px solid #f8bbd0;
+    font-size: 1rem;
+}
+.mobile-nav.active {
+  display: block;
+}
+
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+    .nav-bar ul {
+        display: none;
+    }
+    
+    .mobile-nav-btn {
+        display: block;
+    }
+    
+    .mobile-nav.active {
+        display: flex;
+    }
+    
+    /* Adjust header padding for mobile */
+    .header-container {
+        padding-top: 10px;
+    }
+    
+    /* Adjust logo and tagline for mobile */
+    .logo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .tagline {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    
+    /* Make search form more compact */
+    .search-form {
+        flex-direction: column;
+        gap: 5px;
+    }
+     @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav-btn {
+                display: block;
+            }
+            
+            .mobile-nav.active {
+                display: flex;
+            }
+        }
+}
+        /* Search Page Specific Styles */
+        .search-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .search-header {
+            margin-bottom: 30px;
+            padding: 30px;
+        }
+        
+        .search-header h1 {
+            color: #ec407a;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            padding: 10px;
+        }
+        
+        .search-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .search-bar {
+            width: 80%;
+            max-width: 600px;
+            padding: 15px 25px;
+            border: 2px solid #ff69b4;
+            border-radius: 30px;
+            font-size: 16px;
+            margin-bottom: 30px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        
+        .search-bar:focus {
+            border-color: #d23c67;
+            box-shadow: 0 0 10px rgba(255, 105, 180, 0.3);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .product-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #ff69b4;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .product-image {
+            height: 250px;
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .product-info {
+            padding: 15px;
+        }
+        
+        .product-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .product-category {
+            color: #888;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .product-price {
+            color: #d81b60;
+            font-weight: bold;
+            margin: 10px 0;
+            font-size: 1.2rem;
+        }
+        
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 50px;
+            color: #d23c67;
+            font-size: 1.2rem;
+        }
+        
+                /* Responsive Styles */
+        @media (max-width: 768px) {
+            body {
+                padding-top: 200px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            
+            .tagline {
+                display: none;
+            }
+            
+            .search-bar {
+                width: 100%;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header/Navigation Matching Shop Page -->
+    <div class="header-container">
+        <header class="top-header">
+            <div class="logo">
+                <img src="images/pinkprintlogo.png" alt="logo">
+                <div class="logo-name">PinkPrints</div>
+                <div class="tagline">A Woman's Dream World</div>
+            </div>
+
+            <div class="search-cart">
+                <form action="search.html" method="get" class="search-form">
+                    <button type="submit" class="search-btn">🔍</button>
+                </form>
+            </div>
+        </header>
+        
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="new.html">New in store</a></li>
+                <li><a href="mood.html">Style Mood</a></li>
+                <li><a href="about.html">About us</a></li>
+                <li><a href="contact.html">Contact us</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Mobile Navigation Button -->
+        <button class="mobile-nav-btn" id="mobileNavBtn">☰</button>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="new.html">New in store</a>
+            <a href="mood.html">Style Mood</a>
+            <a href="about.html">About us</a>
+            <a href="contact.html">Contact us</a>
+        </nav>
+    </header>
+
+    <div class="search-container">
+        <div class="search-header">
+            <h1>Find Your Perfect Pink Outfit</h1>
+            <p>Search our collection of beautiful pink fashion items</p>
+        </div>
+
+        <script>
+        // Toggle mobile menu
+        const mobileNavBtn = document.getElementById('mobileNavBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        mobileNavBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+    </script>
+        
+        <input type="text" class="search-bar" placeholder="Search for dresses, tops, accessories..." id="searchInput">
+        
+        <div class="products-grid" id="productsGrid">
+            <!-- Products will load here -->
+        </div>
+    </div>
+
+    <script>
+        // Sample product data - matches your shop page products
+        const products = [
+            {
+                id: 1,
+                name: "Floral Pink Dress",
+                price: 320,
+                image: "images/floralpink.jpg",
+                category: "dresses"
+            },
+            {
+                id: 2,
+                name: "Vintage Y2K Outfit",
+                price: 249.99,
+                image: "images/y2k outfit.jpg",
+                category: "two-pieces"
+            },
+            {
+                id: 3,
+                name: "Strap Top and Shorts Outfit",
+                price: 300.00,
+                image: "images/strap top and skirt Y2k.jpg",
+                category: "two-pieces"
+            },
+            {
+                id: 4,
+                name: "Pink Jumpsuit",
+                price: 440.00,
+                image: "images/pink jumpsuit.jpg",
+                category: "jumpsuits"
+            },
+            {
+                id: 5,
+                name: "Kids Event Dress",
+                price: 320.00,
+                image: "images/kidseventdress.jpg",
+                category: "kids"
+            },
+            {
+                id: 6,
+                name: "Pearly Pink Dress",
+                price: 250.00,
+                image: "images/pearly pink dress.jpg",
+                category: "dresses"
+            },
+            {
+                id: 7,
+                name: "Shades of Pink Dress",
+                price: 330.00,
+                image: "images/shades of pink dress.jpg",
+                category: "dresses"
+            },
+            {
+                id: 8,
+                name: "Vintage Summer Dress",
+                price: 399.99,
+                image: "images/vintage summer dress.jpg",
+                category: "dresses"
+            },
+            {
+                id: 9,
+                name: "Off-Shoulder Dress",
+                price: 390.90,
+                image: "images/woman dress offshoulder.jpg",
+                category: "dresses"
+            },
+            {
+                id: 10,
+                name: "Pink Kids Dress",
+                price: 160.00,
+                image: "images/kidsdress.jpg",
+                category: "kids"
+            },
+        
+            {
+                id: 12,
+                name: "Pink Streetwear",
+                price: 270.00,
+                image: "images/pink streetwear.jpg",
+                category: "tracksuits"
+            },
+            {
+                id: 13,
+                name: "Pink Long Dress",
+                price: 200.00,
+                image: "images/pinklongdress.jpg",
+                category: "dresses"
+            },
+            {
+                id: 14,
+                name: "Elegant Pink Dress",
+                price: 244.99,
+                image: "images/elegant dress for women.jpg",
+                category: "dresses"
+            },
+            {
+                id: 15,
+                name: "Pink Matching Set",
+                price: 400.00,
+                image: "images/matchingset2.jpg",
+                category: "two-pieces"
+            },
+            {
+                id: 16,
+                name: "Pink Two-Piece Set",
+                price: 600.00,
+                image: "images/matchingset1.jpg",
+                category: "two-pieces"
+            },
+            {
+                id: 17,
+                name: "Pink Neckline Dress",
+                price: 250.00,
+                image: "images/necklinepink.jpg",
+                category: "dresses"
+            },
+            {
+                id: 18,
+                name: "Pink and White Dress",
+                price: 65.00,
+                image: "images/Pink and white dress.jpg",
+                category: "dresses"
+            },
+            {
+                id: 19,
+                name: "Pink Skirt and Top",
+                price: 300.00,
+                image: "images/pink skirt and top piece.jpg",
+                category: "two-pieces"
+            },
+            {
+                id: 20,
+                name: "Pink Star Outfit",
+                price: 410.00,
+                image: "images/pink star pants.jpg",
+                category: "two-pieces"
+            },
+            {
+                id: 21,
+                name: "Pink Dress",
+                price: 224.00,
+                image: "images/pinkdress.jpg",
+                category: "dresses"
+            },
+            {
+                id: 22,
+                name: "Pleated Pink Dress",
+                price: 299.99,
+                image: "images/PLEATED PINKY.jpg",
+                category: "dresses"
+            },
+            {
+                id: 23,
+                name: "Colorful Two-Piece",
+                price: 399.99,
+                image: "images/Colorful two-piece.jpg",
+                category: "two-pieces"
+            },
+            {
+                id: 24,
+                name: "Short Pink Dress",
+                price: 240.00,
+                image: "images/short pink dress.jpg",
+                category: "dresses"
+            },
+            {
+                id: 25,
+                name: "Short Skirt Outfit",
+                price: 350.00,
+                image: "images/short skirt outfit.jpg",
+                category: "two-pieces"
+            },
+            {
+                id: 26,
+                name: "Pink Two-Piece",
+                price: 300.00,
+                image: "images/twopiece.jpg",
+                category: "two-pieces"
+            },
+            {
+                id: 27,
+                name: "Pink Woman Dress",
+                price: 299.99,
+                image: "images/woman dress.jpg",
+                category: "dresses"
+            },
+            {
+                id: 28,
+                name: "Pink Woman Two-Piece",
+                price: 264.99,
+                image: "images/woman two piece 2.jpg",
+                category: "two-pieces"
+            },
+            {
+                id: 29,
+                name: "Pink Two-Piece Outfit",
+                price: 309.99,
+                image: "images/woman two piece.jpg",
+                category: "two-pieces"
+            }
+        ];
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Display all products initially
+            displayProducts(products);
+            
+            // Setup search functionality
+            setupSearch();
+        });
+
+        // Setup search functionality
+        function setupSearch() {
+            document.getElementById('searchInput').addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+                const filtered = products.filter(product => 
+                    product.name.toLowerCase().includes(searchTerm) || 
+                    product.category.toLowerCase().includes(searchTerm)
+                );
+                displayProducts(filtered);
+            });
+        }
+
+        // Display products (without any cart functionality)
+        function displayProducts(productsToShow) {
+            const grid = document.getElementById('productsGrid');
+            
+            if (productsToShow.length === 0) {
+                grid.innerHTML = '<div class="no-results"><p>No products found. Try a different search term!</p></div>';
+                return;
+            }
+            
+            grid.innerHTML = productsToShow.map(product => `
+                <div class="product-card">
+                    <span class="product-badge">${product.category}</span>
+                    <img src="${product.image}" alt="${product.name}" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">${product.name}</h3>
+                        <div class="product-category">${product.category}</div>
+                        <div class="product-price">P${product.price.toFixed(2)}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

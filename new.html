@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Pink prints | New Arrivals</title>
+    <style>
+       * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+        :root {
+            --primary: #f8e1e7;
+            --secondary: #ffb6c1;
+            --accent: #d23c67;
+            --dark: #5a2a37;
+            --light: #fff9fa;
+            --text: #333333;
+        }
+        
+        body {
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 160px;
+            background-color:#ffe4ec;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+       .header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 1000; /* Ensures the header stays on top of other content */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+}
+
+/* Top Header */
+.top-header {
+  background-color:black;
+  padding: 20px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  color:#ff69b4;
+}
+
+ .logo{
+  display: flex;
+align-items: center;
+ }
+
+.logo img {
+width: 60px;
+height: 60px;
+margin-right: 10px;
+}
+.logo-name {
+  font-size: 28px;
+  font-weight: bold;
+}
+.tagline {
+  font-size: 14px;
+  margin-left: 300px;
+}
+.search-cart {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-form {
+  display: flex;
+  gap: 8px;
+}
+
+.search-form input {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ff3385;
+  min-width: 200px;
+}
+
+.search-btn, .cart-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+   background-color: #ff3385;
+}
+.cart-button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+    }
+
+.nav-bar ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 20px 0;
+}
+
+.nav-bar ul li {
+  margin: 0 15px;
+}
+
+.nav-bar ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  padding: 5px 10px;
+  transition: 0.3s;
+}
+
+.nav-bar ul li a:hover {
+  border-bottom: 2px solid #ff3385;
+  color: #f8bbd0;
+}
+
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ff69b4;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ff69b4;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 20px;
+}
+.nav-link.active {
+  color: #d23c67;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #ff69b4, #d23c67);
+  border-radius: 3px;
+}
+.mobile-nav-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ff69b4;
+    padding: 30px;
+    position: fixed;
+}
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    position:fixed; /* Changed from absolute to fixed */
+   top: var(--header-height); /* Adjust this based on your header height */
+    left: 0;
+    right: 0;
+    z-index: 999; /* Lower than header */
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.mobile-nav a {
+    padding: 12px 0;
+    color: #555;
+    text-decoration: none;
+    border-bottom: 1px solid #f8bbd0;
+    font-size: 1rem;
+}
+.mobile-nav.active {
+  display: block;
+}
+
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+    .nav-bar ul {
+        display: none;
+    }
+    
+    .mobile-nav-btn {
+        display: block;
+    }
+    
+    .mobile-nav.active {
+        display: flex;
+    }
+    
+    /* Adjust header padding for mobile */
+    .header-container {
+        padding-top: 10px;
+    }
+    
+    /* Adjust logo and tagline for mobile */
+    .logo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .tagline {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    
+    /* Make search form more compact */
+    .search-form {
+        flex-direction: column;
+        gap: 5px;
+    }
+     @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav-btn {
+                display: block;
+            }
+            
+            .mobile-nav.active {
+                display: flex;
+            }
+        }
+}
+
+
+.new-arrivals {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 20px;
+        }
+        
+        .section-header h1 {
+            color:#d23c67;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .section-header p {
+            color: var(--strawberry);
+            font-size: 1.2rem;
+        }
+ 
+        .subtitle {
+            font-weight: 300;
+            font-size: 1.2rem;
+            margin-top: 5px;
+            color: var(--dark);
+        }
+        
+        .sale-banner {
+            background-color: var(--accent);
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-bottom: 30px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            box-shadow: 0 2px 15px rgba(210, 60, 103, 0.3);
+        }
+
+        .shop-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 20px; 
+    }
+        .product {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 20px;
+      text-align: center;
+      flex-direction: column;
+      display: flex;
+    }
+
+    .product img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+    }
+
+    .product h2 {
+      color: #ec407a;
+      font-size: 1.5rem;
+      margin-top: 15px;
+    }
+
+    .product p {
+      font-size: 1.1rem;
+      margin: 10px 0;
+    }
+
+    .product .price {
+      font-size: 1.3rem;
+      color: #d81b60; /* Darker pink for the price */
+      margin-bottom: 15px;
+    }
+    .current-price {
+    color: #d23c67; /* Your pink color */
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.original-price {
+    color: #999;
+    text-decoration: line-through;
+    font-size: 0.9rem;
+}
+.product-badges {
+    display: flex;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.badge {
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.badge-new {
+    background: linear-gradient(135deg, #ff69b4, #ff3385);
+    color: white;
+}
+
+.badge-bestseller {
+    background: linear-gradient(135deg, #ffb347, #ff8c00);
+    color: white;
+}
+
+.badge-limited {
+    background: linear-gradient(135deg, #8a2be2, #9932cc);
+    color: white;
+}
+
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #d81b60;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .btn:hover {
+      background-color: #d81b60; /* Darker pink on hover */
+    }
+        .footer {
+  background-color:pink;
+  color: black;
+  padding: 60px 20px 30px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1 1 220px;
+  margin: 20px;
+}
+
+.footer-section h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: black;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-section p {
+  font-size: 14px;
+}
+
+.footer-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section input[type="email"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 20px;
+}
+
+.footer-section button {
+  padding: 10px;
+  background-color: #ff3385;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-section button:hover {
+  background-color: white;
+  color:pink;
+}
+
+ /* Social Media */
+ .social-media {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color:#ff3385;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.social-link:hover {
+  background: var(--deep-pink);
+  color: white;
+  transform: translateY(-3px);
+}
+
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-section {
+    margin: 10px 0;
+  }
+}
+
+            </style>
+</head>
+<body>
+    <div class="header-container">
+    <header class="top-header">
+ <div class="logo">
+       <img src="images/pinkprintlogo.png" alt="logo">
+        <div class="logo name">PinkPrints</div>
+        <div class="tagline">A Woman's Dream World</div>
+    </div>
+    
+        <div class="search-cart">
+            <form action="search.html" method="get" class="search-form">
+                <button type="submit" class="search-btn">🔍</button>
+            </form>
+            <a href="cart.html" class="cart-button">🛒</a>
+        </div>
+      </header>
+    
+      <!-- Navigation Bar -->
+      <nav class="nav-bar">
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="new.html" class="nav-link active">New in store</a></li>
+          <li><a href="mood.html">Style Mood</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="contact.html">Contact us</a></li>
+        </ul>
+      </nav>
+    </div>
+
+    <!-- Mobile Navigation Button -->
+        <button class="mobile-nav-btn" id="mobileNavBtn">☰</button>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="new.html">New in store</a>
+            <a href="mood.html">Style Mood</a>
+            <a href="about.html">About us</a>
+            <a href="contact.html">Contact us</a>
+        </nav>
+    </header>
+
+    <header>
+        <section class="new-arrivals">
+            <div class="section-header">
+                <h1>New In Store ✨</h1>
+                <p>New arrivals just for you!</p>
+            </div>
+ <script>
+        // Toggle mobile menu
+        const mobileNavBtn = document.getElementById('mobileNavBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        mobileNavBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+    </script>
+    
+    <div class="container">
+        <div class="sale-banner">
+            PRIVATE SALE: 25% OFF ON SELECTED ITEMS  • ENDS SUNDAY
+        </div>
+        <div class="shop-container" id="shopContainer">
+            <!-- Product 1 - Kids Category -->
+            <div class="product kids">
+              <img src="images/kiddress.jpg" alt="Kids dress">
+              <h2>Cute kids dress</h2>
+              <span class="badge-limited">LIMITED</span>
+              <span class="current-price">P240.00</span>
+              <span class="original-price">P360.00</span>
+              
+            </div>
+        
+            <div class="product kids">
+              <img src="images/kidsdress.jpg" alt="Kids dress">
+              <h2>Cute kids dress</h2>
+              <span class="badge-new">NEW</span>
+              <span class="current-price">P160.00</span>
+              <span class="original-price">P333.00</span>
+              
+            </div>
+        
+            <div class="product kids">
+              <img src="images/Girls Off Shoulder Puff Sleeve Top & Ruffle Hem Skirt.jpg" alt="Kids dress">
+              <h2>Cute kids offshoulder dress</h2>
+              <span class="badge-bestseller">BESTSELLER</span>
+              <span class="current-price">P320.00</span>
+              <span class="original-price">P555.00</span>
+              
+            </div>
+        
+            <div class="product kids">
+              <img src="images/short skirt outfit.jpg" alt="Kids dress">
+              <h2>Short skirt outfit</h2>
+              <span class="badge-new">NEW</span>
+              <span class="current-price">P665.00</span>
+              <span class="original-price">P885.00</span>
+             
+            </div>
+        
+            <div class="product kids">
+              <img src="images/dress.jpg" alt="Kids dress">
+              <h2>Cute kids dress</h2>
+              <span class="badge-new">NEW</span>
+              <p>Complete your look with this cute pink hat.</p>
+              <span class="current-price">P290.00</span>
+              <span class="original-price">P325.00</span>
+              
+            </div>
+        
+            <!-- Product 2 - teen Category -->
+            <div class="product teen">
+              <img src="images/shades of pink dress.jpg" alt="Pink twopiece">
+              <h2>Shades of pink dress</h2>
+              <span class="badge-bestseller">BESTSELLER</span>
+              <span class="current-price">P330.00</span>
+              <span class="original-price">P425.00</span>
+              
+            </div>
+        
+            <div class="product teen">
+              <img src="images/pink star pants.jpg" alt="Pink twopiece">
+              <h2>Pink star tracksuit outfit</h2>
+              <span class="badge-new">NEW</span>
+              <p>Complete your look with this cute pink star pants.</p>
+              <span class="current-price">P410.00</span>
+              <span class="original-price">P525.00</span>
+              
+            </div>
+        
+            <div class="product teen">
+              <img src="images/pink cropped tracksuit piece.jpg" alt="Pink twopiece">
+              <h2>Pink cropped tracksuit piece</h2>
+              <span class="badge-new">NEW</span>
+              <span class="current-price">P480.00</span>
+              <span class="original-price">P500.00</span>
+              
+            </div>
+        
+            <div class="product teen">
+              <img src="images/short pink dress.jpg" alt="Pink twopiece">
+              <h2>Pink short dress</h2>
+              <span class="badge-new">NEW</span>
+              <span class="current-price">P240.00</span>
+              <span class="original-price">P300.00</span>
+             
+            </div>
+        
+            <div class="product teen">
+              <img src="images/pink baggy jersey and pants.jpg" alt="Pink twopiece">
+              <h2>Pink baggy jersey and pants</h2>
+              <span class="badge-limited">LIMITED</span>
+              <span class="current-price">P360.00</span>
+              <span class="original-price">P420.00</span>
+              
+            </div>
+            
+            <div class="product teen">
+              <img src="images/pink streetwear.jpg" alt="Pink twopiece">
+              <h2>Pink streetwear</h2>
+              <span class="badge-new">NEW</span>
+              <span class="current-price">P270.00</span>
+              <span class="original-price">P370.00</span>
+             
+            </div>
+            
+            <!-- Product 3 - ladies Category -->
+            <div class="product ladies">
+              <img src="images/pink jumpsuit.jpg" alt="Matching set">
+              <h2>Pink jumpsuit</h2>
+              <span class="badge-bestseller">BESTSELLER</span>
+              <p>Complete your look with this cute pink hat.</p>
+              <span class="current-price">P440.00</span>
+              <span class="original-price">P500.00</span>
+              
+            </div>
+        
+         <div class="product ladies">
+              <img src="images/floralpink.jpg" alt="Matching set">
+              <h2>Pink floral dress</h2>
+              <span class="badge-limited">LIMITED</span>
+              <span class="current-price">P320.00</span>
+              <span class="original-price">P520.00</span>
+             
+            </div>
+        
+            <div class="product ladies">
+              <img src="images/buttoned pink.jpg" alt="Matching set">
+              <h2>Pink Buttoned dress</h2>
+              <span class="badge-new">NEW</span>
+              <p>Complete your look with this cute pink hat.</p>
+              <span class="current-price">P430.00</span>
+              <span class="original-price">P465.00</span>
+              
+            </div>
+        
+            <div class="product ladies">
+              <img src="images/PLEATED PINKY.jpg" alt="Matching set">
+              <h2>Pleated pink dress</h2>
+              <span class="badge-new">NEW</span>
+              <p>Shine bright in this pink dress.</p>
+              <span class="current-price">P300.00</span>
+              <span class="original-price">P425.00</span>
+              
+            </div>
+
+            <div class="product ladies">
+              <img src="images/ladypink.jpg" alt="Matching set">
+              <h2> lady pink dress</h2>
+              <span class="badge-new">NEW</span>
+              <p>Complete your look with this cute pink dress.</p>
+              <span class="current-price">P400.00</span>
+              <span class="original-price">P450.00</span>
+              
+            </div>
+        
+            <div class="product ladies">
+              <img src="images/ladies-twopiece.jpg" alt="Matching set">
+              <h2>Lady pink set</h2>
+              <span class="badge-new">NEW</span>
+              <span class="current-price">P400.00</span>
+              <span class="original-price">P450.00</span>
+             
+            </div>
+
+            <div class="product ladies">
+              <img src="images/necklinepink.jpg" alt="Matching set">
+              <h2>Pink neckline dress</h2>
+              <span class="badge-new">NEW</span>
+              <p>Long pink dress.</p>
+              <span class="current-price">P250.00</span>
+              <span class="original-price">P400.00</span>
+             
+            </div>
+            
+            <div class="product women">
+              <img src="images/elegant dress for women.jpg" alt="Pink Hat">
+              <h2>Elegant dress</h2>
+              <span class="badge-bestseller">BESTSELLER</span>
+              <p>Outing outfit.</p>
+              <span class="current-price">P245.00</span>
+              <span class="original-price">P400.00</span>
+              
+            </div>
+
+            <div class="product women">
+              <img src="images/kidseventdress.jpg" alt="Pink Hat">
+              <h2>Kids event dress</h2>
+              <span class="badge-new">NEW</span>
+              <p>Feel joyful in this pink dress.</p>
+              <span class="current-price">P320.00</span>
+              <span class="original-price">P400.00</span>
+             
+            </div>
+
+            <div class="product women">
+              <img src="images/Nike Dunk Triple Pink.jpg" alt="Pink Hat">
+              <h2>Nike dunk triple pink</h2>
+              <span class="badge-limited">NEW</span>
+              <p>Cute dunks.</p>
+              <span class="current-price">P1240.00</span>
+              <span class="original-price">P1300.00</span>
+              
+            </div>
+
+            <div class="product women">
+              <img src="images/vintage summer dress.jpg" alt="Pink Hat">
+              <h2>Vintage summer dress</h2>
+              <span class="badge-new">NEW</span>
+              <p>Perfect for summer vibes.</p>
+              <span class="current-price">P400.00</span>
+              <span class="original-price">P550.00</span>
+             
+            </div>
+
+            <div class="product women">
+              <img src="images/strap top and skirt Y2k.jpg" alt="Pink Hat">
+              <h2>Matching strap top and shorts</h2>
+              <span class="badge-limited">LIMITED</span>
+              <p>Look cute in this outfit.</p>
+              <span class="current-price">P300.00</span>
+              <span class="original-price">P420.00</span>
+              
+            </div>
+
+            <div class="product women">
+              <img src="images/y2k outfit.jpg" alt="Pink Hat">
+              <h2>Vintage y2k outfit</h2>
+              <span class="badge-bestseller">BESTSELLER</span>
+              <p>Complete your look with this cute outfit.</p>
+              <span class="current-price">P250.00</span>
+              <span class="original-price">P325.00</span>
+              
+            </div>
+            
+        
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="footer-container">
+      
+          <div class="footer-section about">
+            <h2>About PinkPrints</h2>
+            <p>PinkPrints is a dreamland for women who love fashion, beauty, and the magic of pink. Discover the latest trends and embrace your aesthetic!</p>
+          </div>
+      
+          <div class="footer-section links">
+            <h2>Quick Links</h2>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="shop.html">Shop</a></li>
+              <li><a href="new.html">New in store</a></li>
+              <li><a href="mood.html">Style Mood</a></li>
+              <li><a href="about.html">About us</a></li>
+              <li><a href="contact.html">Contact</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-section support">
+            <h2>Customer Support</h2>
+            <ul>
+              <li><a href="faq.html">FAQs</a></li>
+              <li><a href="shipping.html">Shipping & Returns</a></li>
+              <li><a href="privacy.html">Privacy Policy</a></li>
+              <li><a href="terms.html">Terms of Service</a></li>
+            </ul>
+          </div>
+      
+          <div class="footer-section newsletter">
+            <h2>Join Our Newsletter</h2>
+            <form>
+              <input type="email" placeholder="Your email address" required>
+              <button type="submit">Subscribe</button>
+            </form>
+            <div class="social-media">
+                <a href="https://instagram.com/yourpage" class="social-link"><i class="fab fa-instagram"></i></a>
+                <a href="https://facebook.com/yourpage" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com/yourpage" class="social-link"><i class="fab fa-twitter"></i></a>
+                <a href="https://pinterest.com/yourpage" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+            </div>
+          </div>
+      
+        </div>
+      
+        <div class="footer-bottom">
+          &copy; 2025 PinkPrints | All Rights Reserved
+        </div>
+      </footer>
+      
+</body>
+</html>
+
+
+

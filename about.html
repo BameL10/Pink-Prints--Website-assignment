@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Our Story | PinkPrints</title>
+    <style>
+        /* Your Pink Palette */
+        :root {
+            --soft-pink: #fff0f5;
+            --medium-pink: #ffb6c1;
+            --bold-pink: #ff69b4;
+            --dark-pink: #db7093;
+            --white: #ffffff;
+            --black: #333333;
+        }
+         * {
+      margin: 0 0;
+      padding: 0 0;
+      box-sizing:border-box;
+    }
+      
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            line-height: 1.6;
+            color: var(--black);
+            margin: 0 auto;
+            padding: 20px;
+            padding-top: 180px;
+            background-color:#ffe4ec;
+        }
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            padding: 30px 20px;
+            padding-right:15px;
+            padding-left:15px;
+        }
+
+
+        .header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 1000; /* Ensures the header stays on top of other content */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+}
+
+/* Top Header */
+.top-header {
+  background-color:black;
+  padding: 20px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  color:#ff69b4;
+}
+
+ .logo{
+  display: flex;
+align-items: center;
+ }
+
+.logo img {
+width: 60px;
+height: 60px;
+margin-right: 10px;
+}
+.logo-name {
+  font-size: 28px;
+  font-weight: bold;
+}
+.tagline {
+  font-size: 14px;
+  margin-left: 300px;
+}
+.search-cart {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-form {
+  display: flex;
+  gap: 8px;
+}
+
+.search-form input {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ff3385;
+  min-width: 200px;
+}
+
+.search-btn, .cart-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+   background-color: #ff3385;
+}
+.cart-button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+    }
+
+.nav-bar ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 20px 0;
+}
+.nav-bar ul li {
+  margin: 0 15px;
+}
+
+.nav-bar ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  padding: 5px 10px;
+  transition: 0.3s;
+}
+
+.nav-bar ul li a:hover {
+  border-bottom: 2px solid #ff3385;
+  color: #f8bbd0;
+}
+
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ff69b4;
+  letter-spacing: 1px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ff69b4;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 20px;
+}
+.nav-link.active {
+  color: #d23c67;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #ff69b4, #d23c67);
+  border-radius: 3px;
+}
+.mobile-nav-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ff69b4;
+    padding: 10px;
+    position: fixed;
+}
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    position:fixed; /* Changed from absolute to fixed */
+   top: var(--header-height); /* Adjust this based on your header height */
+    left: 0;
+    right: 0;
+    z-index: 999; /* Lower than header */
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.mobile-nav a {
+    padding: 12px 0;
+    color: #555;
+    text-decoration: none;
+    border-bottom: 1px solid #f8bbd0;
+    font-size: 1rem;
+}
+.mobile-nav.active {
+  display: block;
+}
+
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+    .nav-bar ul {
+        display: none;
+    }
+    
+    .mobile-nav-btn {
+        display: block;
+    }
+    
+    .mobile-nav.active {
+        display: flex;
+    }
+    
+    /* Adjust header padding for mobile */
+    .header-container {
+        padding-top: 10px;
+    }
+    
+    /* Adjust logo and tagline for mobile */
+    .logo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .tagline {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    
+    /* Make search form more compact */
+    .search-form {
+        flex-direction: column;
+        gap: 5px;
+    }
+     @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav-btn {
+                display: block;
+            }
+            
+            .mobile-nav.active {
+                display: flex;
+            }
+        }
+}
+
+
+                /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 40px 0;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            color: var(--dark-pink);
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h1:after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--bold-pink);
+        }
+        
+        /* Story Sections */
+        .story-section {
+            margin: 50px 0;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        
+        h2 {
+            color: var(--bold-pink);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .story-section img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        /* Values Grid */
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .value-card {
+            background: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .value-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: var(--dark-pink);
+        }
+        
+        /* Join Section */
+        .join-section {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, var(--medium-pink), var(--bold-pink));
+            color: white;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+        
+        .join-section h2 {
+            color: white;
+            justify-content: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 70px;
+            margin: 25px 0;
+        }
+        
+        .social-link {
+            color: #ff69b4;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 10px 20px;
+            border: 2px solid;
+            border-radius: 30px;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background: white;
+            color: var(--bold-pink);
+        }
+        
+        .shop-btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: var(--dark-pink);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            margin-top: 20px;
+            transition: all 0.3s;
+        }
+        
+        .shop-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .story-section {
+                padding: 20px;
+            }
+        }
+        
+ .footer {
+  background-color:pink;
+  color: black;
+  padding: 60px 20px 30px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1 1 220px;
+  margin: 20px;
+}
+
+.footer-section h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: black;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: black;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-section p {
+  font-size: 14px;
+}
+
+.footer-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section input[type="email"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 20px;
+}
+
+.footer-section button {
+  padding: 10px;
+  background-color: #ff3385;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-section button:hover {
+  background-color: white;
+  color:pink;
+}
+
+ /* Social Media */
+ .social-media {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color:#ff3385;
+  border:none;
+  transition: all 0.3s;
+}
+
+.social-link:hover {
+  background: var(--deep-pink);
+  color: white;
+  transform: translateY(-3px);
+}
+
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-section {
+    margin: 10px 0;
+  }
+}
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="header-container">
+    <!-- Top Header -->
+  <header class="top-header">
+     <div class="logo">
+       <img src="images/pinkprintlogo.png" alt="logo">
+    <div class="logo">PinkPrints</div>
+    <div class="tagline">A Woman's Dream World</div>
+     </div>
+
+    <div class="search-cart">
+      <form action="search.html" method="get" class="search-form">
+          <button type="submit" class="search-btn">🔍</button>
+      </form>
+      <a href="cart.html" class="cart-button">🛒</a>
+  </div>
+</header>
+
+  <!-- Navigation Bar -->
+  <nav class="nav-bar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="new.html">New in store</a></li>
+      <li><a href="mood.html">Style Mood</a></li>
+      <li><a href="about.html" class="nav-link active">About us</a></li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+  </nav>
+  </div>
+
+  <!-- Mobile Navigation Button -->
+        <button class="mobile-nav-btn" id="mobileNavBtn">☰</button>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="new.html">New in store</a>
+            <a href="mood.html">Style Mood</a>
+            <a href="about.html">About us</a>
+            <a href="contact.html">Contact us</a>
+        </nav>
+    </header>
+  <script>
+        // Toggle mobile menu
+        const mobileNavBtn = document.getElementById('mobileNavBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        mobileNavBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+    </script>
+
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Our Pink Story</h1>
+        <p style="font-size: 1.2rem; max-width: 700px; margin: 0 auto;">
+            Where pink isn't just a color - it's confidence, power, and unapologetic self-expression
+        </p>
+    </section>
+    
+    <!-- How It Started -->
+    <section class="story-section">
+        <h2><i class="fas fa-heart"></i> How the brand started</h2>
+        <img src="images/buttoned pink.jpg"
+             alt="Girl in pink dress">
+        
+        <p>PinkPrints is a brand started by a girl who grew up as a lover of all things pink and cute and wore it as a way of showing her true personality and who she aspires to be in the future. She made sure to buy and dress in pink for any occasion as a way of showing people that you can always grow up and still stick to one color because it is said that you never get tired of what you truly love.</p>
+        
+        <p>She then put it upon herself to create a brand to inspire other women, ladies, teen and kids to be able to wear pink and embrace their unique qualities, own their power and use it to express themselves too.</p>
+    </section>
+    
+    <!-- Brand Values -->
+    <section class="story-section">
+        <h2><i class="fas fa-star"></i> Brand values</h2>
+        <p>At PinkPrints we believe in style and providing quality prints that make women feel comfortable in their skin, more bold and more feminine.</p>
+        
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-crown"></i></div>
+                <h3>Confidence</h3>
+                <p>Pink as power to rule the world</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-tshirt"></i></div>
+                <h3>Quality</h3>
+                <p>Premium fabrics that last</p>
+            </div>
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-star"></i></div>
+                <h3>Uniqueness</h3>
+                <p>Our secret code for standing out</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- What to Expect -->
+    <section class="story-section">
+        <h2><i class="fas fa-binoculars"></i> What to expect in the world of pink</h2>
+        <img src="images/pinkladies.jpg"
+             alt="Elegant pink clothing">
+        
+        <p>PinkPrints has "unique" as its secret code to having women feeling the best, our brand provides claspianique, elegant clothing which turns heads when you walk into any room.</p>
+    </section>
+    
+    <!-- Join the Pact -->
+    <section class="join-section">
+        <h2><i class="fas fa-hands-helping"></i> Join the pact!</h2>
+        <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+            We love a united community join us to get to know deeper about our brand and share your stories on what you think about our style.Be "unique"
+        </p>
+        
+        <div class="social-links">
+            <a href="https://instagram.com/yourpage" class="social-link">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a href="https://postcard.com/yourpage" class="social-link">
+                <i class="fas fa-envelope"></i> Postcard
+            </a>
+        </div>
+    </section>
+    
+    <!-- Shop CTA -->
+    <div style="text-align: center; margin: 50px 0;">
+        <a href="shop.html" class="shop-btn">Shop Now</a>
+        <!-- Footer Section -->
+<footer class="footer">
+    <div class="footer-container">
+  
+      <div class="footer-section about">
+        <h2>About PinkPrints</h2>
+        <p>PinkPrints is a dreamland for women who love fashion, beauty, and the magic of pink. Discover the latest trends and embrace your aesthetic!</p>
+      </div>
+  
+      <div class="footer-section links">
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="images/">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="new.html">New in store</a></li>
+          <li><a href="mood.html">Style Mood</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section support">
+        <h2>Customer Support</h2>
+        <ul>
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="shipping.html">Shipping & Returns</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section newsletter">
+        <h2>Join Our Newsletter</h2>
+        <form>
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <div class="social-media">
+            <a href="https://instagram.com/yourpage" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/yourpage" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/yourpage" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="https://pinterest.com/yourpage" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="footer-bottom">
+      &copy; 2025 PinkPrints | All Rights Reserved
+    </div>
+  </footer>
+  
+    
+       
+    </div>
+</body>
+</html>

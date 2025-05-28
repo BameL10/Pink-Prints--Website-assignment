@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PinkPrints</title>
+  <link rel="stylesheet" href="styles.css">
+   <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<div class="header-container">
+  <!-- Top Header -->
+  <header class="top-header">
+     <div class="logo">
+       <img src="images/pinkprintlogo.png" alt="logo">
+    <div class="logo name">PinkPrints</div>
+    <div class="tagline">A Woman's Dream World</div>
+    </div>
+
+    <div class="search-cart">
+      <form action="search.html" method="get" class="search-form">
+          <button type="submit" class="search-btn">🔍</button>
+      </form>
+      <a href="cart.html" class="cart-button">🛒</a>
+      <a href="cart.html" class="cart-link">
+
+      </a>
+  </div>
+  </header>
+
+
+  <!-- Navigation Bar -->
+  <nav class="nav-bar">
+    
+    <ul>
+      <li><a href="index.html" class="nav-link active">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="new.html">New in store</a></li>
+      <li><a href="mood.html">Style Mood</a></li>
+      <li><a href="about.html">About us</a></li>
+      <li><a href="contact.html">Contact us</a></li>
+    </ul>
+  </nav>
+</div>
+</div>
+
+<!-- Mobile Navigation Button -->
+<button class="mobile-nav-btn" id="mobileNavBtn">☰</button>
+
+<!-- Mobile Navigation Menu -->
+<nav class="mobile-nav" id="mobileNav">
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="new.html">New in store</a>
+    <a href="mood.html">Style Mood</a>
+    <a href="about.html">About us</a>
+    <a href="contact.html">Contact us</a>
+</nav>
+</a>
+  </div>
+  </header>
+
+   
+
+   <section class="hero-three-col">
+    <div class="hero-text">
+      <h1>Dress in Pink and Rule the World</h1>
+      <p class="subtitle">Stay pretty in pink. Find your perfect pink aesthetic.</p>
+      <a href="shop.html" class="cta-button">Shop Now</a>
+  </div>
+  </section>
+   <script>
+      /* Add this JavaScript */
+document.documentElement.style.setProperty(
+  '--header-height', 
+  document.querySelector('.header-container').offsetHeight + 'px'
+);
+    // Toggle mobile menu
+    const mobileNavBtn = document.getElementById('mobileNavBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    
+    mobileNavBtn.addEventListener('click', () => {
+        mobileNav.classList.toggle('active');
+    });
+</script>
+  
+  
+
+        
+    <!-- Featured Section -->
+    <section class="featured">
+        <h2>Pink Picks</h2>
+        <div class="carousel-container">
+            <div class="carousel-track">
+        <div class="product">
+            <img src="images/pinkdress.jpg" alt="Pink Dress">
+            <h3>Blush Pink Dress</h3>
+            <p>P270.00</p>
+        </div>
+
+        <div class="product">
+            <img src="images/kidseventdress.jpg" alt="Pink Dress">
+            <h3>Kids event dress</h3>
+            <p>P320.00</p>
+        </div>
+
+        <div class="product">
+            <img src="images/pink streetwear.jpg" alt="Pink Dress">
+            <h3>Pink streetwear</h3>
+            <p>P270.00</p>
+        </div>
+
+        <div class="product">
+            <img src="images/matchingset1.jpg" alt="Pink Dress">
+            <h3>Matching shirt and pants</h3>
+            <p>P600.00</p>
+           
+        </div>
+
+        <div class="product">
+            <img src="images/floralpink.jpg" alt="Pink Dress">
+            <h3>Floral pink dress</h3>
+            <p>P320.00</p>
+           
+        </div> 
+
+
+        <div class="product">
+            <img src="images/pinkdress.jpg" alt="Pink Dress">
+            <h3>Blush Pink Dress</h3>
+            <p>P270.00</p>
+        </div>
+
+        <div class="product">
+            <img src="images/kidseventdress.jpg" alt="Pink Dress">
+            <h3>Kids event dress</h3>
+            <p>P320.00</p>
+        </div>
+
+        <div class="product">
+            <img src="images/pink streetwear.jpg" alt="Pink Dress">
+            <h3>Pink streetwear</h3>
+            <p>P270.00</p>
+        </div>
+
+        <div class="product">
+          <img src="images/matchingset1.jpg" alt="Pink Dress">
+          <h3>Matching shirt and pants</h3>
+          <p>P600.00</p>
+          
+      </div>
+
+      <div class="product">
+          <img src="images/floralpink.jpg" alt="Pink Dress">
+          <h3>Floral pink dress</h3>
+          <p>P320.00</p>
+          
+      </div> 
+
+        <div class="carousel-dots">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+            </div>
+
+
+          <section class="testimonials">
+            <h3>What Our Pink Lovers Say</h3>
+            <div class="testimonial-grid">
+              <div class="testimonial-card">
+                <p>“The quality is amazing! This is my new favorite brand.”</p>
+                <div class="reviewer">– Eunice ★★★★★</div>
+              </div>
+              <div class="testimonial-card">
+                <p>“Perfect clothing shades of pink and so comfortable. Will buy again!”</p>
+                <div class="reviewer">– Tanaka ★★★★★</div>
+              </div>
+              <div class="testimonial-card">
+                <p>“I received a lot of compliments just from wearing these,they ate”</p>
+                <div class="reviewer">– Sebaga ★★★★★</div>
+              </div>
+            </div>
+          </section>
+
+    </section>
+<!-- Footer Section -->
+<footer class="footer">
+    <div class="footer-container">
+  
+      <div class="footer-section about">
+        <h2>About PinkPrints</h2>
+        <p>PinkPrints is a dreamland for women who love fashion, beauty, and the magic of pink. Discover the latest trends and embrace your aesthetic!</p>
+      </div>
+  
+      <div class="footer-section links">
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="new.html">New Arrivals</a></li>
+          <li><a href="mood.html">Style Mood</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section support">
+        <h2>Customer Support</h2>
+        <ul>
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="shipping.html">Shipping & Returns</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section newsletter">
+        <h2>Join Our Newsletter</h2>
+        <form>
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <div class="social-media">
+            <a href="https://instagram.com/yourpage" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/yourpage" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/yourpage" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="https://pinterest.com/yourpage" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="footer-bottom">
+      &copy; 2025 PinkPrints | All Rights Reserved
+    </div>
+  </footer>
+  
+    
+                    
+
+                       

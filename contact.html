@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Contact Us | PinkPrints</title>
+    <style>
+        /* Pink Color Palette */
+        :root {
+            --soft-pink: #fff0f5;
+            --medium-pink: #ffb6c1;
+            --bold-pink: #ff69b4;
+            --dark-pink: #db7093;
+            --white: #ffffff;
+            --black: #333333;
+        }
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            margin: 0;
+            padding: 0;
+            padding-top: 230px;
+            background-color:#ffe4ec;
+            color: var(--black);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        .header-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  z-index: 1000; /* Ensures the header stays on top of other content */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: adds a subtle shadow */
+}
+
+/* Top Header */
+.top-header {
+  background-color:black;
+  padding: 20px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  color:#ff69b4;
+}
+
+ .logo{
+  display: flex;
+align-items: center;
+ }
+
+.logo img {
+width: 60px;
+height: 60px;
+margin-right: 10px;
+}
+.logo-name {
+  font-size: 28px;
+  font-weight: bold;
+}
+.tagline {
+  font-size: 14px;
+  margin-left: 300px;
+}
+.search-cart {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.search-form {
+  display: flex;
+  gap: 8px;
+}
+
+.search-form input {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: 1px solid #ff3385;
+  min-width: 200px;
+}
+
+.search-btn, .cart-button {
+  padding: 8px 15px;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+   background-color: #ff3385;
+}
+.cart-button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+    }
+
+.nav-bar ul {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 3px 0;
+}
+.nav-bar ul li {
+  margin: 0 15px;
+}
+
+.nav-bar ul li a {
+  text-decoration: none;
+  color: black;
+  font-size: 18px;
+  padding: 5px 10px;
+  transition: 0.3s;
+}
+
+.nav-bar ul li a:hover {
+  border-bottom: 2px solid #ff3385;
+  color: #f8bbd0;
+}
+
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ff69b4;
+  letter-spacing: 1px;
+}
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  transition: color 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ff69b4;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-link.active {
+  color: #d23c67;
+  font-weight: 600;
+}
+
+.nav-link.active::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #ff69b4, #d23c67);
+  border-radius: 3px;
+}
+
+
+.mobile-nav-btn {
+    display: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ff69b4;
+    padding: 10px;
+    position: fixed;
+}
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    position: fixed; /* Changed from absolute to fixed */
+   top: var(--header-height); /* Adjust this based on your header height */
+    left: 0;
+    right: 0;
+    z-index: 999; /* Lower than header */
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.mobile-nav a {
+    padding: 12px 0;
+    color: #555;
+    text-decoration: none;
+    border-bottom: 1px solid #f8bbd0;
+    font-size: 1rem;
+}
+.mobile-nav.active {
+  display: block;
+}
+
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+    .nav-bar ul {
+        display: none;
+    }
+    
+    .mobile-nav-btn {
+        display: block;
+    }
+    
+    .mobile-nav.active {
+        display: flex;
+    }
+    
+    /* Adjust header padding for mobile */
+    .header-container {
+        padding-top: 10px;
+    }
+    
+    /* Adjust logo and tagline for mobile */
+    .logo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .tagline {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    
+    /* Make search form more compact */
+    .search-form {
+        flex-direction: column;
+        gap: 5px;
+    }
+     @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav-btn {
+                display: block;
+            }
+            
+            .mobile-nav.active {
+                display: flex;
+            }
+        }
+}
+
+
+               /* Header */
+        .contact-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .contact-header h1 {
+            color: var(--dark-pink);
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+        }
+        
+        .contact-header p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Contact Grid */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        /* Form Section */
+        .form-section {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-section h2 {
+            color: var(--bold-pink);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: var(--dark-pink);
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--medium-pink);
+            border-radius: 8px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        
+        .submit-btn {
+            background-color: var(--bold-pink);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .submit-btn:hover {
+            background-color: var(--dark-pink);
+            transform: translateY(-2px);
+        }
+        
+        /* Info Section */
+        .info-section {
+            background-color: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .info-section h2 {
+            color: var(--bold-pink);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .info-item {
+            margin-bottom: 25px;
+        }
+        
+        .info-item h3 {
+            color: var(--dark-pink);
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .info-item p, 
+        .info-item a {
+            color: var(--black);
+            text-decoration: none;
+        }
+        
+        .info-item a:hover {
+            color: var(--bold-pink);
+            text-decoration: underline;
+        }
+        
+        .storefront-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 3px solid var(--medium-pink);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+        
+        .social-links a {
+            color: var(--dark-pink);
+            font-size: 24px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--bold-pink);
+            transform: translateY(-3px);
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--white);
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-top: 40px;
+        }
+        
+        .faq-section h2 {
+            color: var(--dark-pink);
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+        
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--soft-pink);
+            padding-bottom: 20px;
+        }
+        
+        .faq-question {
+            color: var(--bold-pink);
+            font-weight: bold;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            display: none;
+            padding: 10px 0;
+        }
+        
+        /* Decorative Elements */
+        .pink-splash {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: var(--medium-pink);
+            opacity: 0.2;
+            border-radius: 50%;
+            z-index: 0;
+        }
+        
+        .splash-1 {
+            top: -50px;
+            right: -50px;
+        }
+        
+        .splash-2 {
+            bottom: -30px;
+            left: -30px;
+            width: 150px;
+            height: 150px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+.footer {
+  background-color: pink;
+  color: black;
+  padding: 60px 20px 30px;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1 1 220px;
+  margin: 20px;
+}
+
+.footer-section h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.footer-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-section ul li {
+  margin-bottom: 10px;
+}
+
+.footer-section ul li a {
+  color: black;
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+  text-decoration: underline;
+}
+
+.footer-section p {
+  font-size: 14px;
+}
+
+.footer-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-section input[type="email"] {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: none;
+  border-radius: 20px;
+}
+
+.footer-section button {
+  padding: 10px;
+  background-color: #ff3385;
+  border: none;
+  border-radius: 20px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.footer-section button:hover {
+  background-color: white;
+  color:pink;
+}
+
+ /* Social Media */
+ .social-media {
+  display: flex;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color:#ff3385;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.social-link:hover {
+  background: var(--deep-pink);
+  color: white;
+  transform: translateY(-3px);
+}
+
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-section {
+    margin: 10px 0;
+  }
+}
+
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="header-container">
+    <!-- Top Header -->
+  <header class="top-header">
+    <div class="logo">
+       <img src="images/pinkprintlogo.png" alt="logo">
+    <div class="logo">PinkPrints</div>
+    <div class="tagline">A Woman's Dream World</div>
+    </div>
+
+    <div class="search-cart">
+      <form action="search.html" method="get" class="search-form">
+          <button type="submit" class="search-btn">🔍</button>
+      </form>
+      <a href="cart.html" class="cart-button">🛒</a>
+  </div>
+</header>
+
+  <!-- Navigation Bar -->
+  <nav class="nav-bar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="new.html">New in store</a></li>
+      <li><a href="mood.html">Style Mood</a></li>
+      <li><a href="about.html">About us</a></li>
+      <li><a href="contact.html" class="nav-link active">Contact us</a></li>
+    </ul>
+  </nav>
+  </div>
+
+  <!-- Mobile Navigation Button -->
+        <button class="mobile-nav-btn" id="mobileNavBtn">☰</button>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="new.html">New in store</a>
+            <a href="mood.html">Style Mood</a>
+            <a href="about.html">About us</a>
+            <a href="contact.html">Contact us</a>
+        </nav>
+    </header>
+  <script>
+        // Toggle mobile menu
+        const mobileNavBtn = document.getElementById('mobileNavBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        mobileNavBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+    </script>
+
+
+    <div class="container">
+        <!-- Header -->
+        <div class="contact-header">
+            <h1>Let's Chat!</h1>
+            <p>We'll love to hear from you queens on how you feel about Pink Prints.Feel free to spread pink!</p>
+        </div>
+        
+        <!-- Contact Grid -->
+        <div class="contact-grid">
+            <!-- Form Section -->
+            <div class="form-section">
+                <h2>Send Us a Message</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="Bameezy...">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="pink prints.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" placeholder="With something pinky..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                </form>
+            </div>
+            
+            <!-- Info Section with Storefront Photo -->
+            <div class="info-section">
+                <div class="pink-splash splash-1"></div>
+                <div class="pink-splash splash-2"></div>
+                
+                <h2>Find Us Here</h2>
+                
+                <img src="images/pink store.jpg" 
+                     alt="PinkPrints Boutique" class="storefront-img">
+                
+                <div class="info-item">
+                    <h3>Pink Prints</h3>
+                    <p>123 PTA Avenue, Dennis City,Gaborone,Botswana</p>
+                </div>
+                
+                <div class="info-item">
+                    <h3>Email Us</h3>
+                    <p><a href="mailto:hello@pinkprints.com">PinkPrints.com</a></p>
+                </div>
+                
+                <div class="info-item">
+                    <h3>Call Us</h3>
+                    <p><a href="tel:+1234567890">76218595</a></p>
+                </div>
+                
+                <div class="info-item">
+                    <h3>Operating Hours</h3>
+                    <p>Monday to Friday: 9am - 6pm<br>
+                    Saturday: 1pm - 6pm</p>
+                </div>
+                
+                <div class="info-item">
+                    <h3>Follow Our Adventures</h3>
+                    <div class="social-links">
+                        <a href="https://instagram.com/yourpage" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://www.instagram.com/blog/davidson.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.pinterest.com/blog/davidson.com" target="_blank"> <i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Does Pink Prints only sell pink items</span>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes!Our main focus is to deliver pink items to queens who believe in the power of pink</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do you ship internationally?</span>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! We ship worldwide. International orders typically take 7-14 business days to arrive.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I visit your boutique in person?</span>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Absolutely! We'd love to see you at 123 PTA Avenue, Dennis City. Check our operating hours above.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do I care for my pink garments?</span>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>We recommend hand washing in cold water with similar colors. Lay flat to dry to maintain that perfect pink hue!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple FAQ toggle functionality
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const icon = question.querySelector('i');
+                
+                if (answer.style.display === 'block') {
+                    answer.style.display = 'none';
+                    icon.classList.remove('fa-minus');
+                    icon.classList.add('fa-plus');
+                } else {
+                    answer.style.display = 'block';
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus');
+                }
+            });
+        });
+    </script>
+    <!-- Footer Section -->
+<footer class="footer">
+    <div class="footer-container">
+  
+      <div class="footer-section about">
+        <h2>About PinkPrints</h2>
+        <p>PinkPrints is a dreamland for women who love fashion, beauty, and the magic of pink. Discover the latest trends and embrace your aesthetic!</p>
+      </div>
+  
+      <div class="footer-section links">
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="new.html">New in store</a></li>
+          <li><a href="mood.html">Style Mood</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section support">
+        <h2>Customer Support</h2>
+        <ul>
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="shipping.html">Shipping & Returns</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+  
+      <div class="footer-section newsletter">
+        <h2>Join Our Newsletter</h2>
+        <form>
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <div class="social-media">
+            <a href="https://instagram.com/yourpage" class="social-link"><i class="fab fa-instagram"></i></a>
+            <a href="https://facebook.com/yourpage" class="social-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://twitter.com/yourpage" class="social-link"><i class="fab fa-twitter"></i></a>
+            <a href="https://pinterest.com/yourpage" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="footer-bottom">
+      &copy; 2025 PinkPrints | All Rights Reserved
+    </div>
+  </footer>
+  
+    
+       
+</body>
+</html>

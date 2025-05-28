@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <title>Shop - PinkPrints</title>
+  <style>
+    /* Reset some basic defaults */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+      background-color:#ffe4ec; /* Light pink background */
+      padding: 40px;
+      padding-top: 160px;
+      text-align: center;
+      transition: padding-top 0.3s ease;
+    }
+    
+    .header-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    
+    .top-header {
+      background-color:black;
+      padding: 20px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      color: #ff69b4;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 60px;
+      height: 60px;
+      margin-right: 10px;
+    }
+    
+    .logo-name {
+      font-size: 28px;
+      font-weight: bold;
+    }
+
+    .tagline {
+  font-size: 14px;
+  margin-left: 300px;
+}
+
+    
+    .search-cart {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .search-form {
+      display: flex;
+      gap: 8px;
+    }
+
+    
+
+    .search-btn, .cart-button {
+      padding: 8px 15px;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      background-color: #ff3385;
+    }
+
+    .cart-button {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+    }
+
+    .nav-bar ul {
+      display: flex;
+      justify-content: center;
+      list-style: none;
+      padding: 20px 0;
+      background-color:white;
+    }
+
+    .nav-bar ul li {
+      margin: 0 15px;
+    }
+
+    .nav-bar ul li a {
+      text-decoration: none;
+      color: black;
+      font-size: 18px;
+      padding: 5px 10px;
+      transition: 0.3s;
+    }
+
+    .nav-bar ul li a:hover {
+      border-bottom: 2px solid #ff3385;
+      color: #f8bbd0;
+    }
+    
+    .nav-link.active {
+      color: #d23c67;
+      font-weight: 600;
+    }
+.mobile-nav-btn {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #ff69b4;
+    padding: 10px;
+    position: fixed;
+}
+.mobile-nav {
+    display: none;
+    flex-direction: column;
+    position: fixed; /* Changed from absolute to fixed */
+   top: var(--header-height); /* Adjust this based on your header height */
+    left: 0;
+    right: 0;
+    z-index: 999; /* Lower than header */
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+}
+
+.mobile-nav a {
+    padding: 12px 0;
+    color: #555;
+    text-decoration: none;
+    border-bottom: 1px solid #f8bbd0;
+    font-size: 1rem;
+}
+.mobile-nav.active {
+  display: block;
+}
+
+/* Hide desktop nav on mobile */
+@media (max-width: 768px) {
+    .nav-bar ul {
+        display: none;
+    }
+    
+    .mobile-nav-btn {
+        display: block;
+    }
+    
+    .mobile-nav.active {
+        display: flex;
+    }
+    
+    /* Adjust header padding for mobile */
+    .header-container {
+        padding-top: 10px;
+    }
+    
+    /* Adjust logo and tagline for mobile */
+    .logo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .tagline {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    
+    /* Make search form more compact */
+    .search-form {
+        flex-direction: column;
+        gap: 5px;
+    }
+     @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+            
+            .mobile-nav-btn {
+                display: block;
+            }
+            
+            .mobile-nav.active {
+                display: flex;
+            }
+        }
+}
+
+
+    h1 {
+      color: #ec407a;
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+      padding: 40px;
+    }
+
+    /* Dropdown Menu */
+    select {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ec407a;
+      border-radius: 5px;
+      background-color: white;
+      margin-bottom: 30px;
+    }
+
+    .shop-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 20px; 
+    }
+
+    .product {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 20px;
+      text-align: center;
+      flex-direction: column;
+      display: flex;
+      background-color: white;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .product:hover {
+      transform: translateY(-5px);
+    }
+
+    .product img {
+      width: 100%;
+      height: 300px;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+
+    .product h2 {
+      color: #ec407a;
+      font-size: 1.5rem;
+      margin-top: 15px;
+    }
+
+    .product p {
+      font-size: 1.1rem;
+      margin: 10px 0;
+    }
+
+    .product .price {
+      font-size: 1.3rem;
+      color: #d81b60;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      background-color: #d81b60;
+      color: white;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.3s;
+      margin-top: auto;
+    }
+
+    .btn:hover {
+      background-color: #c2185b;
+    }
+    
+    /* Notification bubble */
+    .cart-count {
+      background-color: #d81b60;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 6px;
+      font-size: 12px;
+      margin-left: 5px;
+    }
+
+    /* Footer Styles */
+    .footer {
+      background-color: pink;
+      color: black;
+      padding: 60px 20px 30px;
+      margin-top: 50px;
+    }
+
+    .footer-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .footer-section {
+      flex: 1 1 220px;
+      margin: 20px;
+    }
+
+    .footer-section h2 {
+      font-size: 22px;
+      margin-bottom: 15px;
+    }
+
+    .footer-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-section ul li {
+      margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+      color: black;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .footer-section ul li a:hover {
+      text-decoration: underline;
+    }
+
+    .footer-section p {
+      font-size: 14px;
+    }
+
+    .footer-section form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .footer-section input[type="email"] {
+      padding: 10px;
+      margin-bottom: 10px;
+      border: none;
+      border-radius: 20px;
+    }
+
+    .footer-section button {
+      padding: 10px;
+      background-color: #ff3385;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .footer-section button:hover {
+      background-color: white;
+      color: pink;
+    }
+
+    .social-media {
+      display: flex;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      color: #ff3385;
+      border-radius: 50%;
+      transition: all 0.3s;
+    }
+
+    .social-link:hover {
+      background: var(--deep-pink);
+      color: white;
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.5);
+      font-size: 14px;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+      body {
+        padding-top: 200px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      
+      .tagline {
+        display: none;
+      }
+      
+      .shop-container {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        gap: 15px;
+      }
+      
+      .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .footer-section {
+        margin: 10px 0;
+      }
+    }
+
+    /* Notification */
+    .notification {
+      position: fixed;
+      top: 120px;
+      right: 20px;
+      background-color:#f8bbd0;
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1000;
+      display: none;
+      animation: slideIn 0.5s, fadeOut 0.5s 2.5s;
+    }
+
+    @keyframes slideIn {
+      from {right: -300px; opacity: 0;}
+      to {right: 20px; opacity: 1;}
+    }
+
+    @keyframes fadeOut {
+      from {opacity: 1;}
+      to {opacity: 0;}
+    }
+  </style>
+</head>
+<body>
+  <div class="header-container">
+    <!-- Top Header -->
+    <header class="top-header">
+      <div class="logo">
+        <img src="images/pinkprintlogo.png" alt="logo">
+        <div class="logo-name">PinkPrints</div>
+        <div class="tagline">A Woman's Dream World</div>
+      </div>
+
+      <div class="search-cart">
+        <form action="search.html" method="get" class="search-form">
+          <button type="submit" class="search-btn">🔍</button>
+        </form>
+        <a href="cart.html" class="cart-button">🛒 <span id="cartCount" class="cart-count">0</span></a>
+      </div>
+    </header>
+    
+    <!-- Navigation Bar -->
+    <nav class="nav-bar">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html" class="nav-link active">Shop</a></li>
+        <li><a href="new.html">New in store</a></li>
+        <li><a href="mood.html">Style Mood</a></li>
+        <li><a href="about.html">About us</a></li>
+        <li><a href="contact.html">Contact us</a></li>
+      </ul>
+    </nav>
+  </div>
+  <!-- Mobile Navigation Button -->
+        <button class="mobile-nav-btn" id="mobileNavBtn">☰</button>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav" id="mobileNav">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="new.html">New in store</a>
+            <a href="mood.html">Style Mood</a>
+            <a href="about.html">About us</a>
+            <a href="contact.html">Contact us</a>
+        </nav>
+    </header>
+
+  <!-- Notification -->
+  <div class="notification" id="notification">
+    Item added to cart!
+  </div>
+
+  <h1>Welcome to the Pink Shop!</h1>
+  <h2>See all our fabulous items in store!!!!</h2>
+  <script>
+        // Toggle mobile menu
+        const mobileNavBtn = document.getElementById('mobileNavBtn');
+        const mobileNav = document.getElementById('mobileNav');
+        
+        mobileNavBtn.addEventListener('click', () => {
+            mobileNav.classList.toggle('active');
+        });
+    </script>
+
+  <!-- Category Dropdown -->
+  <label for="category">Choose a Category: </label>
+  <select id="category">
+    <option value="all">All Products</option>
+    <option value="kids">Kids</option>
+    <option value="teen">Teen</option>
+    <option value="ladies">Ladies</option>
+    <option value="women">Women</option>
+  </select>
+
+  <div class="shop-container" id="shopContainer">
+    <!-- Product 1 - Kids Category -->
+    <div class="product kids">
+      <img src="images/kiddress.jpg" alt="Kids dress">
+      <h2>Pretty kids dress</h2>
+      <p>Pretty dresses for pretty kids</p>
+      <p class="price">P240.00</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product kids">
+      <img src="images/kidsdress.jpg" alt="Kids dress">
+      <h2>Cute kids dress</h2>
+      <p class="price">P160.00</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product kids">
+      <img src="images/Girls Off Shoulder Puff Sleeve Top & Ruffle Hem Skirt.jpg" alt="Kids dress">
+      <h2>Kids offshoulder puff sleeve top and hem skirt</h2>
+      <p>Kids set</p>
+      <p class="price">P320.00</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product kids">
+      <img src="images/kidseventdress.jpg" alt="Kids dress">
+      <h2>Kids event dress</h2>
+      <p class="price">P320.00</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product kids">
+      <img src="images/dress.jpg" alt="Kids dress">
+      <h2>Dark pink kids dress</h2>
+      <p class="price">P290.00</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product kids">
+      <img src="images/twopiece.jpg" alt="Kids dress">
+      <h2>skirt and top kids two-piece</h2>
+      <p class="price">P300.00</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <!-- Product 2 - teen Category -->
+    <div class="product teen">
+      <img src="images/pink streetwear.jpg" alt="Pink twopiece">
+      <h2>Pink streetwear</h2>
+      <p>A lovely piece perfect for any occasion.</p>
+      <p class="price">Top wear P120, bottoms P150</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product teen">
+      <img src="images/pink star pants.jpg" alt="Pink twopiece">
+      <h2>Pink star tracksuit outfit</h2>
+      <p>Perfect for winter.</p>
+      <p class="price">Top wear P220, bottoms P190</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product teen">
+      <img src="images/pink cropped tracksuit piece.jpg" alt="Pink twopiece">
+      <h2>Pink cropped tracksuit piece</h2>
+      <p>A lovely piece perfect for any occasion.</p>
+      <p class="price">Top wear P230, bottoms P250</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product teen">
+      <img src="images/pink jumpsuit.jpg" alt="Pink twopiece">
+      <h2>Pink jumpsuit</h2>
+      <p class="price">P440</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product teen">
+      <img src="images/pink baggy jersey and pants.jpg" alt="Pink twopiece">
+      <h2>Pink baggy jersey and pants</h2>
+      <p class="price">Top wear P190, bottoms P170</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+    
+    <div class="product teen">
+      <img src="images/Nike Dunk Triple Pink.jpg" alt="Pink twopiece">
+      <h2>Nike Dunk Triple Pink</h2>
+      <p>A lovely piece perfect for any occasion.</p>
+      <p class="price">P1240</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div> 
+
+    <div class="product teen">
+      <img src="images/strap top and skirt Y2k.jpg" alt="Pink Hat">
+      <h2>Matching strap top and shorts</h2>
+      <p class="price">P300.00</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product teen">
+      <img src="images/short skirt outfit.jpg" alt="Pink twopiece">
+      <h2>short skirt outfit</h2>
+      <p class="price">Top wear P220, bottoms P130</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product teen">
+      <img src="images/y2k outfit.jpg" alt="Pink Hat">
+      <h2>Vintage y2k outfit</h2>
+      <p class="price">P249.99</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+   
+    
+    <!-- Product 3 - ladies Category -->
+    <div class="product ladies">
+      <img src="images/matchingset2.jpg" alt="Matching set">
+      <h2>Pink matching set</h2>
+      <p>Perfect set </p>
+      <p class="price">P400</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product ladies">
+      <img src="images/Rose Pink Petal Crop Top - White.jpg" alt="Pink Hat">
+      <h2>Rose Pink Petal Crop Top</h2>
+      <p class="price">P99.99</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product ladies">
+      <img src="images/vintage summer dress.jpg" alt="Pink Hat">
+      <h2>Vintage summer dress</h2>
+      <p class="price">P399.99</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product ladies">
+      <img src="images/matchingset1.jpg" alt="Pink Hat">
+      <h2>Matching shirt and pants</h2>
+      <p class="price">P600.00</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+
+    <div class="product ladies">
+      <img src="images/pinklongdress.jpg" alt="Pink Hat">
+      <h2>Pink long dress</h2>
+      <p class="price">P200.00</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+    
+
+ <div class="product ladies">
+      <img src="images/floralpink.jpg" alt="Matching set">
+      <h2>floral pink dress</h2>
+      <p class="price">P320.00</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product ladies">
+      <img src="images/pinkdress.jpg" alt="Pink Hat">
+      <h2>Pink dress</h2>
+      <p class="price">P224.00</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product ladies">
+      <img src="images/pearly pink dress.jpg" alt="Pink Hat">
+      <h2>Pearly pink dress</h2>
+      <p>Perfect for events</p>
+      <p class="price">P250.00</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product ladies">
+      <img src="images/buttoned pink.jpg" alt="Matching set">
+      <h2>Buttoned pink</h2>
+      <p class="price">P430</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product ladies">
+      <img src="images/pinkdress.jpg" alt="Matching set">
+      <h2>Pink dress</h2>
+      <p class="price">P400</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product ladies">
+      <img src="images/short pink dress.jpg" alt="Matching set">
+      <h2>Pink short dress</h2>
+      <p>Perfect for outings </p>
+      <p class="price">P240</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product ladies">
+      <img src="images/shades of pink dress.jpg" alt="Matching set">
+      <h2>Pink matching set</h2>
+      <p class="price">P330</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product ladies">
+      <img src="images/ladypink.jpg" alt="Matching set">
+      <h2>Lady pink dress</h2>
+      <p class="price">P400</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product ladies">
+      <img src="images/ladies-twopiece.jpg" alt="Matching set">
+      <h2>Lady pink set</h2>
+      <p class="price">P400</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+    <div class="product ladies">
+      <img src="images/necklinepink.jpg" alt="Matching set">
+      <h2>Pink neckline</h2>
+      <p class="price">P250</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+    
+    
+    <!-- Product 4 - women Category -->
+    <div class="product women">
+      <img src="images/elegant dress for women.jpg" alt="Pink Hat">
+      <h2>Elegant dress</h2>
+      <p class="price">P244.99</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product women">
+      <img src="images/woman dress offshoulder.jpg" alt="Pink Hat">
+      <h2>Offshoulder women dress</h2>
+      <p class="price">P390.90</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product women">
+      <img src="images/woman two piece 2.jpg" alt="Pink Hat">
+      <h2>Pink two-piece</h2>
+      <p class="price">P264.99</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+    
+    <div class="product women">
+      <img src="images/Colorful two-piece.jpg" alt="Pink Hat">
+      <h2>Colorful two-piece</h2>
+      <p class="price">P399.99</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+  
+    <div class="product women">
+      <img src="images/woman dress.jpg" alt="Pink Hat">
+      <h2>Woman dress</h2>
+      <p class="price">P299.99</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+   
+    <div class="product women">
+      <img src="images/woman two piece.jpg" alt="Pink Hat">
+      <h2>Woman two-piece</h2>
+      <p class="price">P309.99</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+  
+    <div class="product women">
+      <img src="images/PLEATED PINKY.jpg" alt="Pink Hat">
+      <h2>Pleated pink dress</h2>
+      <p class="price">P299.99</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+    
+    <div class="product women">
+      <img src="images/shades of pink dress.jpg" alt="Pink Hat">
+      <h2>Shades of pink dress</h2>
+      <p class="price">P399.99</p>
+      <button class="btn add-to-cart">Add to Cart</button>
+    </div>
+  </div>
+
+  <!-- Footer Section -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-section about">
+        <h2>About PinkPrints</h2>
+        <p>PinkPrints is a dreamland for women who love fashion, beauty, and the magic of pink. Discover the latest trends and embrace your aesthetic!</p>
+      </div>
+
+      <div class="footer-section links">
+        <h2>Quick Links</h2>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="shop.html">Shop</a></li>
+          <li><a href="new.html">New in store</a></li>
+          <li><a href="mood.html">Style Mood</a></li>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section support">
+        <h2>Customer Support</h2>
+        <ul>
+          <li><a href="faq.html">FAQs</a></li>
+          <li><a href="shipping.html">Shipping & Returns</a></li>
+          <li><a href="privacy.html">Privacy Policy</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-section newsletter">
+        <h2>Join Our Newsletter</h2>
+        <form>
+          <input type="email" placeholder="Your email address" required>
+          <button type="submit">Subscribe</button>
+        </form>
+        <div class="social-media">
+          <a href="https://instagram.com/yourpage" class="social-link"><i class="fab fa-instagram"></i></a>
+          <a href="https://facebook.com/yourpage" class="social-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com/yourpage" class="social-link"><i class="fab fa-twitter"></i></a>
+          <a href="https://pinterest.com/yourpage" class="social-link"><i class="fab fa-pinterest-p"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      &copy; 2025 PinkPrints | All Rights Reserved
+    </div>
+  </footer>
+
+  <script>
+    // Cart functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize cart if it doesn't exist
+      if (!localStorage.getItem('cart')) {
+        localStorage.setItem('cart', JSON.stringify([]));
+      }
+      
+      // Update cart count on page load
+      updateCartCount();
+      
+      // Category filter functionality
+      const categorySelect = document.getElementById('category');
+      categorySelect.addEventListener('change', function() {
+        const selectedCategory = this.value;
+        const products = document.querySelectorAll('.product');
+        
+        products.forEach(product => {
+          if (selectedCategory === 'all' || product.classList.contains(selectedCategory)) {
+            product.style.display = 'flex';
+          } else {
+            product.style.display = 'none';
+          }
+        });
+      });
+      
+      // Add to cart buttons
+      const addToCartButtons = document.querySelectorAll('.add-to-cart');
+      
+      addToCartButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const product = this.closest('.product');
+          const productId = product.querySelector('h2').textContent;
+          const productPriceText = product.querySelector('.price').textContent;
+          
+          // Extract numeric price (handle cases like "Top wear P120, bottoms P150")
+          const priceMatch = productPriceText.match(/P(\d+\.?\d*)/);
+          const productPrice = priceMatch ? parseFloat(priceMatch[1]) : 0;
+          
+          const productImage = product.querySelector('img').src;
+          
+          // Get current cart
+          const cart = JSON.parse(localStorage.getItem('cart'));
+          
+          // Check if item already in cart
+          const existingItem = cart.find(item => item.id === productId);
+          
+          if (existingItem) {
+            existingItem.quantity += 1;
+          } else {
+            cart.push({
+              id: productId,
+              title: productId,
+              price: productPrice,
+              image: productImage,
+              quantity: 1
+            });
+          }
+          
+          // Save back to localStorage
+          localStorage.setItem('cart', JSON.stringify(cart));
+          
+          // Show notification
+          showNotification(`${productId} added to cart!`);
+          
+          // Update cart count
+          updateCartCount();
+        });
+      });
+      
+      // Function to update cart count in header
+      function updateCartCount() {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+        
+        // Update cart count display
+        const cartCount = document.getElementById('cartCount');
+        if (cartCount) {
+          cartCount.textContent = totalItems;
+          if (totalItems > 0) {
+            cartCount.style.display = 'inline-block';
+          } else {
+            cartCount.style.display = 'none';
+          }
+        }
+      }
+      
+      // Function to show notification
+      function showNotification(message) {
+        const notification = document.getElementById('notification');
+        notification.textContent = message;
+        notification.style.display = 'block';
+        
+        // Hide after 3 seconds
+        setTimeout(() => {
+          notification.style.display = 'none';
+        }, 3000);
+      }
+    });
+  </script>
+</body>
+</html>
